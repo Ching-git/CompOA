@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import cn.edu.csu.oa.basedao.BaseAcion;
 import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.service.DepartmentService;
 import cn.edu.csu.oa.util.DepartmentUtils;
@@ -18,20 +19,9 @@ import com.opensymphony.xwork2.ModelDriven;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("all")
-public class DepartmentAction extends ActionSupport implements
-		ModelDriven<Department> {
-
-	@Resource
-	private DepartmentService departmentService;
-
-	private Department model = new Department();
+public class DepartmentAction extends BaseAcion<Department>{
 
 	private Long parentId;
-
-	@Override
-	public Department getModel() {
-		return model;
-	}
 
 	/**
 	 * 列表:列表只显示同级的部门数据，默认显示最顶级的

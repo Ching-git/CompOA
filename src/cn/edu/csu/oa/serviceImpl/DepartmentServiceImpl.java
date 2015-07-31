@@ -12,7 +12,6 @@ import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.service.DepartmentService;
 
 @Repository
-@Transactional
 @SuppressWarnings("all")
 public class DepartmentServiceImpl extends DaoSupportImpl<Department> implements DepartmentService {
 

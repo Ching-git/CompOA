@@ -11,7 +11,7 @@ public class DepartmentUtils {
 	/**
 	 * 遍历部门树，把所有的部门都改掉名称后放到同一个List中返回，通过名称中的空格表示层次
 	 * @param topList
-	 * @param removedDepartment 这个部门和这个部门的子孙部门都要删除,如果为null表示没有要移除的部门
+	 * @param removeDepartment 这个部门和这个部门的子孙部门都要删除,如果为null表示没有要移除的部门
 	 * @return
 	 */
 	public static List<Department> getAllDepartmentList(List<Department> topList, Department removeDepartment) {

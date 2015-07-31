@@ -8,7 +8,6 @@ import cn.edu.csu.oa.domain.Role;
 import cn.edu.csu.oa.service.RoleService;
 
 @Service
-@Transactional
 public class RoleServiceImpl extends DaoSupportImpl<Role> implements RoleService {
 
 	// @Resource

@@ -1,14 +1,17 @@
 package cn.edu.csu.oa.base;
 
 import java.lang.reflect.ParameterizedType;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.springframework.transaction.annotation.Transactional;
 
-@SuppressWarnings("unchecked")
+// 这个@Transactional注解对子类中的方法也有效！
+@Transactional
 public class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Resource
@@ -66,16 +69,18 @@ public class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Override
 	public List<T> getByIds(Long[] ids) {
-		// TODO Auto-generated method stub
+
+		if (ids == null || ids.length == 0) {
+			return Collections.EMPTY_LIST;
+		}
 		return getSession().createQuery(//
-				"From " + clazz.getSimpleName() + "WHERE id IN (:ids)")//
-				.setParameter("ids", ids)
+				"From " + clazz.getSimpleName() + " WHERE id IN (:ids)")//
+				.setParameterList("ids", ids)//*****注意要用parameterList方法
 				.list();
 	}
 
 	@Override
 	public List<T> findAll() {
-		// TODO Auto-generated method stub
 		return getSession().createQuery("FROM " + clazz.getSimpleName()).list();
 	}
 

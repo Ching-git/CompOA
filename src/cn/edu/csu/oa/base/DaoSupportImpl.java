@@ -12,77 +12,76 @@ import org.springframework.transaction.annotation.Transactional;
 
 // 这个@Transactional注解对子类中的方法也有效！
 @Transactional
-public class DaoSupportImpl<T> implements DaoSupport<T> {
+@SuppressWarnings("unchecked")
+public abstract class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Resource
 	private SessionFactory sessionFactory;
-	
-	protected Class<T> clazz = null;
-	
-	public DaoSupportImpl(){
-		
-		ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();
-		this.clazz = (Class<T>)pt.getActualTypeArguments()[0];
-		
-		System.out.println("----> clazz = " + clazz);
+	protected Class<T> clazz = null; // 这是一个问题！
+
+	// public BaseDaoImpl(Class<T> clazz) {
+	// this.clazz = clazz;
+	// }
+
+	public DaoSupportImpl() {
+		// 通过反射获取T的真是类型
+		ParameterizedType pt = (ParameterizedType) this.getClass().getGenericSuperclass();
+		this.clazz = (Class<T>) pt.getActualTypeArguments()[0];
+
+		System.out.println("---> clazz = " + clazz);
 	}
-	
-	protected Session getSession(){
+
+	/**
+	 * 获取当前可用的Session
+	 * 
+	 * @return
+	 */
+	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-	
-	@Override
+
 	public void save(T entity) {
-		
 		getSession().save(entity);
 	}
 
-	@Override
-	public void delete(Long id) {
+	public void update(T entity) {
+		getSession().update(entity);
+	}
 
+	public void delete(Long id) {
 		if (id == null) {
 			return;
-		};
-		
+		}
+
 		Object entity = getById(id);
 		if (entity != null) {
 			getSession().delete(entity);
 		}
 	}
 
-	@Override
-	public void update(T entity) {
-
-		getSession().update(entity);
-	}
-
-	@Override
 	public T getById(Long id) {
-
 		if (id == null) {
 			return null;
-		}else {
-			return (T)getSession().get(clazz, id);
+		} else {
+			return (T) getSession().get(clazz, id);
 		}
-		
 	}
 
-	@Override
 	public List<T> getByIds(Long[] ids) {
-
-		if (ids == null || ids.length == 0) {
+		if(ids == null || ids.length == 0){
 			return Collections.EMPTY_LIST;
 		}
+		
 		return getSession().createQuery(//
-				"From " + clazz.getSimpleName() + " WHERE id IN (:ids)")//
-				.setParameterList("ids", ids)//*****注意要用parameterList方法
+				// 注意空格！
+				"FROM " + clazz.getSimpleName() + " WHERE id IN (:ids)")//
+				.setParameterList("ids", ids)// 注意一定要使用setParameterList()方法！
 				.list();
 	}
 
-	@Override
 	public List<T> findAll() {
+		// 注意空格！
 		return getSession().createQuery("FROM " + clazz.getSimpleName()).list();
 	}
 
-	
 }

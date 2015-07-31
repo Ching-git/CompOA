@@ -15,7 +15,7 @@ import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
 
 @SuppressWarnings("all")
-public class BaseAcion<T> extends ActionSupport implements ModelDriven<T> {
+public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 
 	@Resource
 	protected DepartmentService departmentService;
@@ -28,7 +28,7 @@ public class BaseAcion<T> extends ActionSupport implements ModelDriven<T> {
 
 	protected T model;
 
-	public BaseAcion() {
+	public BaseAction() {
 		try {
 			// 通过反射获得T的真实类型
 			ParameterizedType pType = (ParameterizedType) this.getClass()

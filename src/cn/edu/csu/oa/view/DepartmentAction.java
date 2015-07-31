@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import cn.edu.csu.oa.base.BaseAcion;
+import cn.edu.csu.oa.base.BaseAction;
 import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.service.DepartmentService;
 import cn.edu.csu.oa.util.DepartmentUtils;
@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ModelDriven;
 @Controller
 @Scope("prototype")
 @SuppressWarnings("all")
-public class DepartmentAction extends BaseAcion<Department>{
+public class DepartmentAction extends BaseAction<Department>{
 
 	private Long parentId;
 

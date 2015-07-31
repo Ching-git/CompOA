@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import cn.edu.csu.oa.base.BaseAcion;
+import cn.edu.csu.oa.base.BaseAction;
 import cn.edu.csu.oa.domain.Role;
 import cn.edu.csu.oa.service.RoleService;
 
@@ -19,7 +19,7 @@ import com.opensymphony.xwork2.ModelDriven;
 @Controller
 @Scope("prototype")
 
-public class RoleAction extends BaseAcion<Role>{
+public class RoleAction extends BaseAction<Role>{
 
 	@Resource
 	private RoleService roleService;

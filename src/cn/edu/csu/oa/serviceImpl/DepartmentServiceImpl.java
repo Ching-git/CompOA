@@ -5,13 +5,14 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.csu.oa.base.DaoSupportImpl;
 import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.service.DepartmentService;
 
-@Repository
+@Service
 @SuppressWarnings("all")
 public class DepartmentServiceImpl extends DaoSupportImpl<Department> implements DepartmentService {
 

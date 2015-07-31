@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import cn.edu.csu.oa.base.BaseAcion;
+import cn.edu.csu.oa.base.BaseAction;
 import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.domain.Role;
 import cn.edu.csu.oa.domain.User;
@@ -14,9 +14,10 @@ import cn.edu.csu.oa.util.DepartmentUtils;
 
 import com.opensymphony.xwork2.ActionContext;
 
+@SuppressWarnings("serial")
 @Controller
 @Scope("prototype")
-public class UserAction extends BaseAcion<User>{
+public class UserAction extends BaseAction<User>{
 
 	private Long departmentId;
 	private Long[] roleIds;

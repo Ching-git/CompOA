@@ -8,6 +8,7 @@ import cn.edu.csu.oa.domain.User;
 import cn.edu.csu.oa.service.UserService;
 
 @Service
+@Transactional
 public class UserServiceImpl extends DaoSupportImpl<User> implements UserService {
  
 }

@@ -1,22 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <html>
 <head>
 <title>部门列表</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script language="javascript"
-	src="${pageContext.request.contextPath}/script/jquery.js"></script>
-<script language="javascript"
-	src="${pageContext.request.contextPath}/script/pageCommon.js"
-	charset="utf-8"></script>
-<script language="javascript"
-	src="${pageContext.request.contextPath}/script/PageUtils.js"
-	charset="utf-8"></script>
-<link type="text/css" rel="stylesheet"
-	href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
-<script type="text/javascript">
-	
-</script>
+<%@ include file="/WEB-INF/jsp/public/header.jspf"%>
 </head>
 <body>
 
@@ -55,7 +41,8 @@
 						</td>
 						<td>${parent.name}&nbsp;</td>
 						<td>${description}&nbsp;</td>
-						<td><s:a action="department_delete?id=%{id}&parentId=%{parent.id}"
+						<td><s:a
+								action="department_delete?id=%{id}&parentId=%{parent.id}"
 								onclick="return window.confirm('这将删除所有的下级部门，您确定要删除吗？')">删除</s:a>
 							<s:a action="department_editUI?id=%{id}">修改</s:a></td>
 					</tr>

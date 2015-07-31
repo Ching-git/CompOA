@@ -1,4 +1,4 @@
-package cn.edu.csu.oa.basedao;
+package cn.edu.csu.oa.base;
 
 import java.lang.reflect.ParameterizedType;
 

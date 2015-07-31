@@ -1,4 +1,4 @@
-package cn.edu.csu.oa.basedao;
+package cn.edu.csu.oa.base;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -9,14 +9,14 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 @SuppressWarnings("unchecked")
-public class BaseDaoImpl<T> implements BaseDao<T> {
+public class DaoSupportImpl<T> implements DaoSupport<T> {
 
 	@Resource
 	private SessionFactory sessionFactory;
 	
 	protected Class<T> clazz = null;
 	
-	public BaseDaoImpl(){
+	public DaoSupportImpl(){
 		
 		ParameterizedType pt = (ParameterizedType)this.getClass().getGenericSuperclass();
 		this.clazz = (Class<T>)pt.getActualTypeArguments()[0];

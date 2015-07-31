@@ -1,8 +1,8 @@
-package cn.edu.csu.oa.basedao;
+package cn.edu.csu.oa.base;
 
 import java.util.List;
 
-public interface BaseDao<T> {
+public interface DaoSupport<T> {
 
 	
 	/**

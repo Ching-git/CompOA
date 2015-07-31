@@ -17,6 +17,13 @@
             <key column="roleId"/>
             <many-to-many class="User" column="userId"/>
         </set>
+        
+        <!-- privileges属性，表达了我与Privilege的多对多关系 -->
+        <set name="privileges" table="csu_role_privilege">
+            <key column="roleId"/>
+            <many-to-many class="Privilege" column="privilegeId"/>
+        </set>
+        
 
     </class>
 

@@ -5,8 +5,6 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
 
 public class TestLog {
-
-	
 	
 	private Log log = LogFactory.getLog("TestLog");
 	

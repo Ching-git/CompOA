@@ -3,7 +3,7 @@ package cn.edu.csu.oa.domain;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Privilage {
+public class Privilege {
 
 	private Long id;
 	private String url;
@@ -11,9 +11,9 @@ public class Privilage {
 	
 	private Set<Role> roles = new HashSet<Role>();
 	
-	private Privilage parent;
+	private Privilege parent;
 	
-	private Set<Privilage> children = new HashSet<Privilage>();
+	private Set<Privilege> children = new HashSet<Privilege>();
 
 	public Long getId() {
 		return id;
@@ -47,19 +47,19 @@ public class Privilage {
 		this.roles = roles;
 	}
 
-	public Privilage getParent() {
+	public Privilege getParent() {
 		return parent;
 	}
 
-	public void setParent(Privilage parent) {
+	public void setParent(Privilege parent) {
 		this.parent = parent;
 	}
 
-	public Set<Privilage> getChildren() {
+	public Set<Privilege> getChildren() {
 		return children;
 	}
 
-	public void setChildren(Set<Privilage> children) {
+	public void setChildren(Set<Privilege> children) {
 		this.children = children;
 	}
 	

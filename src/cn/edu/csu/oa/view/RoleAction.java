@@ -1,5 +1,7 @@
 package cn.edu.csu.oa.view;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,6 +10,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import cn.edu.csu.oa.base.BaseAction;
+import cn.edu.csu.oa.domain.Privilege;
 import cn.edu.csu.oa.domain.Role;
 import cn.edu.csu.oa.service.RoleService;
 
@@ -21,11 +24,9 @@ import com.opensymphony.xwork2.ModelDriven;
 
 public class RoleAction extends BaseAction<Role>{
 
-	@Resource
-	private RoleService roleService;
 
-	private Role model = new Role();
-
+	private Long[] privilegeIds;
+	
 	/**
 	 * 列表
 	 * 
@@ -98,10 +99,45 @@ public class RoleAction extends BaseAction<Role>{
 		ActionContext.getContext().getValueStack().push(role);
 		return "saveUI";
 	}
-
-	@Override
-	public Role getModel() {
-		// TODO Auto-generated method stub
-		return model;
+	
+	/**
+	 *  设置权限
+	 * @return
+	 */
+	public String setPrivilege() {
+		//1.从数据库中获取要修改的原始对象
+		Role role = roleService.getById(model.getId());
+		
+		//2.设置要修改的属性
+		List<Privilege> privilegeList = privilegeService.getByIds(privilegeIds);
+		role.setPrivileges(new HashSet<Privilege>(privilegeList));
+		
+		//3.更新数据库
+		roleService.update(role);
+		return "toList";
 	}
+
+	/**
+	 * 设置权限页面
+	 * 
+	 * @return
+	 */
+	public String setPrivilegeUI() {
+		//准备数据
+		List<Privilege> privilegeList = privilegeService.findAll();
+		ActionContext .getContext().put("privilegeList", privilegeList);
+		
+		//准备要回显的数据
+		Role role = roleService.getById(model.getId());
+		ActionContext.getContext().getValueStack().push(role);
+		
+		privilegeIds = new Long[role.getPrivileges().size()];
+		int index = 0;
+		for (Privilege p : role.getPrivileges()) {
+			privilegeIds[index++] = p.getId();
+		}
+		
+		return "setPrivilegeUI";
+	}
+
 }

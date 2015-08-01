@@ -8,6 +8,7 @@ import cn.edu.csu.oa.domain.Department;
 import cn.edu.csu.oa.domain.Role;
 import cn.edu.csu.oa.domain.User;
 import cn.edu.csu.oa.service.DepartmentService;
+import cn.edu.csu.oa.service.PrivilegeService;
 import cn.edu.csu.oa.service.RoleService;
 import cn.edu.csu.oa.service.UserService;
 
@@ -25,6 +26,9 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	
 	@Resource
 	protected UserService userService;
+	
+	@Resource
+	protected PrivilegeService privilegeService;
 
 	protected T model;
 

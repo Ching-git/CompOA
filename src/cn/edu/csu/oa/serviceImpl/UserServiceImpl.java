@@ -10,6 +10,7 @@ import cn.edu.csu.oa.service.UserService;
 
 @Service
 @Transactional
+@SuppressWarnings("all")
 public class UserServiceImpl extends DaoSupportImpl<User> implements UserService {
 
 	@Override
@@ -20,6 +21,12 @@ public class UserServiceImpl extends DaoSupportImpl<User> implements UserService
 		
 		//保存到数据库
 		getSession().save(user);
+	}
+
+	@Override
+	public User findByLoginNameAndPassword(String loginName, String password) {
+		String md5 = DigestUtils.md5Hex(password);
+		return (User) getSession().createQuery("FROM USER u WHERE u.loginName=? AND u.password=?").setParameter(0, loginName).setParameter(1, md5).uniqueResult();
 	}
  
 }

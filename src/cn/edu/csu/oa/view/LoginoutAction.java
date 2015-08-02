@@ -29,7 +29,7 @@ public class LoginoutAction extends BaseAction<User>{
 		} 
 		//如果登录名和密码正确，就登录
 		else {
-			ActionContext.getContext().put("user", user);
+			ActionContext.getContext().getSession().put("user", user);
 			return "toHome";
 		}
 		

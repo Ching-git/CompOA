@@ -9,35 +9,7 @@
 	href="${pageContext.request.contextPath}/style/blue/file.css" />
 <link type="text/css" rel="stylesheet"
 	href="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.css" />
-<script type="text/javascript">
-	$(function() {
 
-		// 增加onclick事件处理函数			
-		$("input[name=privilegeIds]").click(
-				function() {
-					// 当选中或取消某个权限时，同时也选中或取消所有的下级权限
-					$(this).siblings("ul").find("input").attr("checked",
-							this.checked);
-
-					// 当选中某个权限时，应同时选中他的直系上的权限。
-					if (this.checked == true) { // 可以直接写为 if(this.checked){..}
-						$(this).parents("li").children(
-								"input[name=privilegeIds]").attr("checked",
-								true);
-					}
-
-					// 当取消某个权限时，如果同级的权限都没有选择，就也取消上级权限
-					else {
-						if ($(this).parent().siblings("li").children(
-								"input:checked").size() == 0) {
-							$(this).parent().parent().siblings("input").attr(
-									"checked", false);
-						}
-					}
-
-				});
-	});
-</script>
 </head>
 <body>
 
@@ -79,8 +51,8 @@
 							<tr align="LEFT" valign="MIDDLE" id="TableTitle">
 								<td width="300px" style="padding-left: 7px;"><input
 									type="checkbox" id="cbSelectAll"
-									onclick=" selectAll(this.checked) " />
-									<label for="cbSelectAll">全选</label></td>
+									onclick=" selectAll(this.checked) " /> <label
+									for="cbSelectAll">全选</label></td>
 							</tr>
 						</thead>
 
@@ -89,12 +61,51 @@
 							<tr class="TableDetail1">
 								<!-- 显示权限树 -->
 								<td>
-								
-									<%-- 使用Struts2的标签显示复选框，有回显功能，但不方便修改显示效果。--%> 
+									<%-- 使用Struts2的标签显示复选框，有回显功能，但不方便修改显示效果。
 									<s:checkboxlist
 										name="privilegeIds" list="privilegeList" listKey="id"
 										listValue="name">
 									</s:checkboxlist>
+									--%> <%-- 自己使用循环显示复选框，需要自己实现回显效果  
+									<s:iterator value="privilegeList">
+										<input type="checkbox" name="privilegeIds" value="${id}"
+											id="cb_${id}"
+											<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+										<label for="cb_${id}">${name}</label>
+									</s:iterator>
+									--%> 
+									
+									<%-- 显示为树状结构（使用<ul>标签） --%>
+									<ul id="tree">
+										<%-- 第一层 --%>
+										<s:iterator value="topPrivilegeList">
+											<li><input type="checkbox" name="privilegeIds"
+												value="${id}" id="cb_${id}"
+												<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+												<label for="cb_${id}"><span class="folder">${name}</span></label>
+												<ul>
+													<%-- 第二层 --%>
+													<s:iterator value="children">
+														<li><input type="checkbox" name="privilegeIds"
+															value="${id}" id="cb_${id}"
+															<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+															<label for="cb_${id}"><span class="folder">${name}</span></label>
+															<ul>
+																<%-- 第三层 --%>
+																<s:iterator value="children">
+																	<li><input type="checkbox" name="privilegeIds"
+																		value="${id}" id="cb_${id}"
+																		<s:property value="%{id in privilegeIds ? 'checked' : ''}"/> />
+																		<label for="cb_${id}"><span class="folder">${name}</span></label>
+																	</li>
+																</s:iterator>
+															</ul></li>
+													</s:iterator>
+												</ul></li>
+										</s:iterator>
+									</ul> <script type="text/javascript">
+										$("#tree").treeview();
+									</script>
 
 								</td>
 							</tr>
@@ -106,8 +117,8 @@
 			<!-- 表单操作 -->
 			<div id="InputDetailBar">
 				<input type="image"
-					src="${pageContext.request.contextPath}/style/images/save.png" /> <a
-					href="javascript:history.go(-1);"><img
+					src="${pageContext.request.contextPath}/style/images/save.png" />
+				<a href="javascript:history.go(-1);"><img
 					src="${pageContext.request.contextPath}/style/images/goBack.png" /></a>
 			</div>
 		</s:form>

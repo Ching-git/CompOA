@@ -27,13 +27,21 @@ public class RoleAction extends BaseAction<Role>{
 
 	private Long[] privilegeIds;
 	
+	public Long[] getPrivilegeIds() {
+		return privilegeIds;
+	}
+
+	public void setPrivilegeIds(Long[] privilegeIds) {
+		this.privilegeIds = privilegeIds;
+	}
+
 	/**
 	 * 列表
 	 * 
 	 * @return
 	 */
 	public String list() {
-
+ 
 		// 准备数据
 		List<Role> roleList = roleService.findAll();
 		ActionContext.getContext().put("roleList", roleList);
@@ -124,8 +132,8 @@ public class RoleAction extends BaseAction<Role>{
 	 */
 	public String setPrivilegeUI() {
 		//准备数据
-		List<Privilege> privilegeList = privilegeService.findAll();
-		ActionContext .getContext().put("privilegeList", privilegeList);
+		List<Privilege> topPrivilegeList = privilegeService.findTopList();
+		ActionContext .getContext().put("topPrivilegeList", topPrivilegeList);
 		
 		//准备要回显的数据
 		Role role = roleService.getById(model.getId());

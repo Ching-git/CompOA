@@ -13,6 +13,11 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:applicationContext*.xml</param-value>
 	</context-param>
+	
+	<!-- 配置自己的用于做初始化工作的的监听器,一定要配置到ApplicationContext监听器的后面，因为要用到Spring容器中的对象 -->
+    <listener>
+        <listener-class>cn.edu.csu.oa.util.OAInitListener</listener-class>
+    </listener>
 
     <!-- 配置Spring的OpenSessionInViewFilter以解决懒加载问题,要配置在核心过滤器之前 -->
     <filter>

@@ -22,7 +22,7 @@
         <many-to-one name="department" class="Department" column="departmentId"/>
         
         <!-- roles属性，表示我与Role的多对多关系 -->
-        <set name="roles" table="csu_user_role">
+        <set name="roles" table="csu_user_role" lazy="false">
             <key column="userId"/>
             <many-to-many class="Role" column="roleId"/>
         </set>

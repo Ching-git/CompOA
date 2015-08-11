@@ -46,9 +46,38 @@
                 </td>
                 <td>${description}&nbsp;</td>
                 <td>
-                	<s:a action="user_delete?id=%{id}" onclick="return delConfirm()">删除</s:a>
-                    <s:a action="user_editUI?id=%{id}">修改</s:a>
+                
+                	<%-- version 1  加个判断
+                	<s:if test="#session.user.hasPrivilegeByName('用户删除')">
+	                	<s:a action="user_delete?id=%{id}" onclick="return delConfirm()">删除</s:a>
+                	</s:if>
+                	<s:if test="#session.user.hasPrivilegeByName('用户修改')">
+                    	<s:a action="user_editUI?id=%{id}">修改</s:a>
+                    </s:if>
+                	<s:if test="#session.user.hasPrivilegeByName('用户初始化密码')">
+						<s:a action="user_initPassword?id=%{id}" onclick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</s:a>
+					</s:if>
+					 --%>
+					
+					<%-- version 2  用自定义标签实现（判断权限的名称）
+					<oa:a action="user_editUI?id=%{id}" privName="用户修改">修改</oa:a>
+					--%>
+					
+					<%-- version 3.1  用自定义标签实现（判断权限的URL）
+					<oa:a action="user_delete?id=%{id}" privUrl="user_delete">删除</oa:a>
+					<oa:a action="user_editUI?id=%{id}" privUrl="user_edit">修改</oa:a>
+					 --%>
+					
+					<%-- version 3.2  用自定义标签实现（判断权限的URL，而URL在action中就有，但需要做一下处理才能得到我们想要的格式）
+					<oa:a action="user_delete?id=%{id}">删除</oa:a>
+					<oa:a action="user_editUI?id=%{id}">修改</oa:a>
+					 --%>
+					
+					<%-- version 4 还是s:a标签，我们要修改<s:a>标签所对应的源码 --%>
+					<s:a action="user_delete?id=%{id}" onclick="return delConfirm()">删除</s:a>
+					<s:a action="user_editUI?id=%{id}">修改</s:a>
 					<s:a action="user_initPassword?id=%{id}" onclick="return window.confirm('您确定要初始化密码为1234吗？')">初始化密码</s:a>
+
                 </td>
             </tr>
         </s:iterator> 
@@ -63,7 +92,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

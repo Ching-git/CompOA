@@ -57,25 +57,6 @@ public class AnchorTag extends AbstractClosingTag {
 	protected String anchor;
 	protected String forceAddSchemeHostAndPort;
 
-	
-//	@Override
-//	public int doEndTag() throws JspException {
-//		// 获取当前登录的用户
-//		User user = (User) pageContext.getSession().getAttribute("user");
-//		if (user == null) {
-//			throw new RuntimeException("没有登录用户！");
-//		}
-//
-//		// 获取所需要的权限URL（在action属性值中，但需要处理一下）
-//		String privUrl = "/" + action;
-//
-//		// 根据权限决定是否显示超链接
-//		if (user.hasPrivilegeByUrl(privUrl)) {
-//			return super.doEndTag(); // 输出<a>标签，并继续执行此标签后面的JSP代码
-//		} else {
-//			return BodyTagSupport.EVAL_PAGE; // 没有输出<a>标签，继续执行此标签后面的JSP代码
-//		}
-//	}
 
 	@Override
 	public int doEndTag() throws JspException {
@@ -86,18 +67,7 @@ public class AnchorTag extends AbstractClosingTag {
 		}
 		
 		//获取所需的权限URL（在action属性中，但需要处理）
-		//1，去掉后面的参数字符串（如果有）
 		String privUrl = "/" + action;
-		int index = privUrl.indexOf("?");
-		if (index > -1) {
-			privUrl = privUrl.substring(0, index);
-		}
-		
-		//2，去掉后面的UI后缀（如果有）
-		if (privUrl.endsWith("UI")) {
-			privUrl = privUrl.substring(0,privUrl.length() - 2);
-		}
-		
 		
 		//根据权限决定显示超链接
 		if (user.hasPrivilegeByUrl(privUrl)) {

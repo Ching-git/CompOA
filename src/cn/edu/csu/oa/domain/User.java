@@ -60,6 +60,17 @@ public class User {
 			return true;
 		}
 
+		// 1，去掉后面的参数字符串（如果有）
+		int index = privUrl.indexOf("?");
+		if (index > -1) {
+			privUrl = privUrl.substring(0, index);
+		}
+
+		// 2，去掉后面的UI后缀（如果有）
+		if (privUrl.endsWith("UI")) {
+			privUrl = privUrl.substring(0, privUrl.length() - 2);
+		}
+
 		// 如果是普通用户，就需要判断权限
 		for (Role role : roles) {
 			for (Privilege p : role.getPrivileges()) {

@@ -11,7 +11,6 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import sun.util.logging.resources.logging;
 import cn.edu.csu.oa.domain.Privilege;
 import cn.edu.csu.oa.service.PrivilegeService;
 
@@ -39,6 +38,11 @@ public class OAInitListener implements ServletContextListener {
 		List<Privilege> topPrivilegeList = privilegeService.findTopList();
 		application.setAttribute("topPrivilegeList", topPrivilegeList);
 		log.info("====== topPrivilegeList已经发到application作用域了！！======");
+		
+		//查询所有权限的URL集合并放到application作用域
+		List<String> allPrivilegeUrls = privilegeService.getAllPrivilegeUrls();
+		application.setAttribute("allPrivilegeUrls", allPrivilegeUrls);
+		log.info("====== allPrivilegeUrls已经发到application作用域了！！======");
 	}
 	
 }

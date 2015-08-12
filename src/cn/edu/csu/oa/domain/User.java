@@ -1,7 +1,10 @@
-package cn.edu.csu.oa.domain;
+ package cn.edu.csu.oa.domain;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+
+import com.opensymphony.xwork2.ActionContext;
 
 /**
  * 用户
@@ -70,12 +73,20 @@ public class User {
 		if (privUrl.endsWith("UI")) {
 			privUrl = privUrl.substring(0, privUrl.length() - 2);
 		}
-
-		// 如果是普通用户，就需要判断权限
-		for (Role role : roles) {
-			for (Privilege p : role.getPrivileges()) {
-				if (privUrl.equals(p.getUrl())) {
-					return true;
+		
+		//如果是普通用户，就需要判断权限
+		//a,如果这个URL是不需要控制的功能（登录后就能直接使用的），这时应该直接返回true
+		Collection<String> allPrivilegeUrls = (Collection<String>) ActionContext.getContext().getApplication().get("allPrivilegeUrls");
+		if (!allPrivilegeUrls.contains(privUrl)) {
+			return true;
+		}
+		//b,如果这个URL是需要控制的功能（登录后还得有对应的权限才能使用的），这时应判断权限
+		else {
+			for (Role role : roles) {
+				for (Privilege p : role.getPrivileges()) {
+					if (privUrl.equals(p.getUrl())) {
+						return true;
+					}
 				}
 			}
 		}

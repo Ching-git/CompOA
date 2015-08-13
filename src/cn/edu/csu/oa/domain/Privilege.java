@@ -1,9 +1,11 @@
 package cn.edu.csu.oa.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Privilege {
+@SuppressWarnings("serial")
+public class Privilege implements Serializable{
 
 	private Long id;
 	private String url;

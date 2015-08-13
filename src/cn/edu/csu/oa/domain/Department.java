@@ -1,5 +1,6 @@
 package cn.edu.csu.oa.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,8 @@ import java.util.Set;
  * @author Ching
  * 
  */
-public class Department {
+@SuppressWarnings("serial")
+public class Department implements Serializable{
 	private Long id;
 	private Set<User> users = new HashSet<User>();
 	private Department parent;

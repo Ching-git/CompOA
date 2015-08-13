@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.edu.csu.oa.domain">
+
+	<class name="Forum" table="csu_forum">
+		<id name="id">
+            <generator class="native"/>
+		</id>
+		
+        <property name="name" column="name"></property>
+        <property name="description" column="description"></property>
+        <property name="position" column="position"></property>
+       
+	</class>
+	
+</hibernate-mapping>

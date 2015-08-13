@@ -61,6 +61,13 @@
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="toList" type="redirectAction">user_list</result>
         </action>
+        
+        <!-- 配置板块管理-->
+        <action name="forumManage_*" class="forumManageAction" method="{1}">
+            <result name="saveUI">/WEB-INF/jsp/forumManageAction/saveUI.jsp</result>
+            <result name="list">/WEB-INF/jsp/forumManageAction/list.jsp</result>
+            <result name="toList" type="redirectAction">user_list</result>
+        </action>
 
         <!-- 登录注销功能 -->
         <action name="loginout_*" class="loginoutAction" method="{1}">

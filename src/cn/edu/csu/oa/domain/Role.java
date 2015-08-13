@@ -1,5 +1,6 @@
 package cn.edu.csu.oa.domain;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,8 @@ import java.util.Set;
  * @author Ching
  * 
  */
-public class Role {
+@SuppressWarnings("serial")
+public class Role implements Serializable{
 	private Long id;
 	private String name;
 	private String description;

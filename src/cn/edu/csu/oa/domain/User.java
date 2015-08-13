@@ -1,5 +1,6 @@
  package cn.edu.csu.oa.domain;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +13,8 @@ import com.opensymphony.xwork2.ActionContext;
  * @author Ching
  * 
  */
-public class User {
+@SuppressWarnings("all")
+public class User implements Serializable{
 	private Long id;
 	private Department department;
 	private Set<Role> roles = new HashSet<Role>();

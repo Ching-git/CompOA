@@ -10,7 +10,9 @@ import cn.edu.csu.oa.domain.User;
 import cn.edu.csu.oa.service.DepartmentService;
 import cn.edu.csu.oa.service.ForumService;
 import cn.edu.csu.oa.service.PrivilegeService;
+import cn.edu.csu.oa.service.ReplyService;
 import cn.edu.csu.oa.service.RoleService;
+import cn.edu.csu.oa.service.TopicService;
 import cn.edu.csu.oa.service.UserService;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -33,6 +35,12 @@ public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	
 	@Resource
 	protected ForumService forumService;
+	
+	@Resource
+	protected ReplyService replyService;
+	
+	@Resource
+	protected TopicService topicService;
 
 	protected T model;
 

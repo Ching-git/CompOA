@@ -15,22 +15,20 @@
         <interceptors>
             <!-- 声明拦截器 -->
             <interceptor name="checkPrivilege" class="cn.edu.csu.oa.util.CheckPrivilegeInterceptor"></interceptor>
-            
+
             <!-- 配置我们自己的拦截器 -->
             <interceptor-stack name="myDefaultStack">
                 <interceptor-ref name="checkPrivilege"></interceptor-ref>
                 <interceptor-ref name="defaultStack"></interceptor-ref>
-            </interceptor-stack>   
+            </interceptor-stack>
         </interceptors>
-        
+
         <!-- 配置默认的拦截器栈 -->
         <default-interceptor-ref name="myDefaultStack"></default-interceptor-ref>
-
         <global-results>
             <result name="loginUI">/WEB-INF/jsp/loginoutAction/loginUI.jsp</result>
             <result name="noPrivilegeUI">/noPrivilegeUI.jsp</result>
         </global-results>
-
 
         <!--配置测试用的Action -->
         <action name="Test" class="testAction">
@@ -61,7 +59,7 @@
             <result name="list">/WEB-INF/jsp/userAction/list.jsp</result>
             <result name="toList" type="redirectAction">user_list</result>
         </action>
-        
+
         <!-- 配置板块管理-->
         <action name="forumManage_*" class="forumManageAction" method="{1}">
             <result name="saveUI">/WEB-INF/jsp/forumManageAction/saveUI.jsp</result>
@@ -69,10 +67,29 @@
             <result name="toList" type="redirectAction">forumManage_list</result>
         </action>
 
+        <!-- 论坛：版块相关功能-->
+        <action name="forum_*" class="forumAction" method="{1}">
+            <result name="show">/WEB-INF/jsp/forumAction/show.jsp</result>
+            <result name="list">/WEB-INF/jsp/forumAction/list.jsp</result>
+        </action>
+
         <!-- 登录注销功能 -->
         <action name="loginout_*" class="loginoutAction" method="{1}">
             <result name="logout">/WEB-INF/jsp/loginoutAction/logout.jsp</result>
             <result name="toHome" type="redirect">/index.jsp</result>
+        </action>
+        
+        <!-- 论坛：主题相关功能-->
+        <action name="topic_*" class="topicAction" method="{1}">
+            <result name="show">/WEB-INF/jsp/topicAction/show.jsp</result>
+            <result name="addUI">/WEB-INF/jsp/topicAction/list.jsp</result>
+            <result name="toShow" type="redirectAction">topic_show?id=${id}</result>
+        </action>
+        
+        <!-- 论坛：回复相关功能-->
+        <action name="reply_*" class="replyAction" method="{1}">
+            <result name="addUI">/WEB-INF/jsp/replyAction/addUI.jsp</result>
+            <result name="toShow" type="redirectAction">topic_show?id=${topicId}</result>
         </action>
 
         <!-- 首页 -->

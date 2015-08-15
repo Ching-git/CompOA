@@ -24,6 +24,8 @@
         <mapping resource="cn/edu/csu/oa/domain/Department.hbm.xml"/>
         <mapping resource="cn/edu/csu/oa/domain/Privilege.hbm.xml"/>
         <mapping resource="cn/edu/csu/oa/domain/Forum.hbm.xml"/>
+        <mapping resource="cn/edu/csu/oa/domain/Topic.hbm.xml"/>
+        <mapping resource="cn/edu/csu/oa/domain/Reply.hbm.xml"/>
 
     </session-factory>
 </hibernate-configuration>

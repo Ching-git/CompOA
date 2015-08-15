@@ -16,7 +16,7 @@
 					<div id=LogoutOperate>
 						<img src="${pageContext.request.contextPath}/style/blue/images/logout/logout2.gif" border=0 /> 
 						
-						<%-- 这个超链接不适用<s:a>标签！！ --%>
+						<%-- 这个超链接不使用<s:a>标签！！ --%>
 						<a href="${pageContext.request.contextPath}/loginout_loginUI.do">重新进入系统</a>
 
 						<!--

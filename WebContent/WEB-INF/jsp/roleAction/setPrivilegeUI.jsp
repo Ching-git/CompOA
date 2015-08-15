@@ -6,7 +6,7 @@
 	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.js"></script>
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/file.css" />
 	<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/script/jquery_treeview/jquery.treeview.css" />
-	<%-- <script type="text/javascript">
+	<script type="text/javascript">
 		$(function(){
 			
 			// 增加onclick事件处理函数			
@@ -28,7 +28,7 @@
 				
 			});
 		});
-	</script>--%>
+	</script>
 </head>
 <body>
 
@@ -158,31 +158,5 @@
 </div>
 
 </body>
-
-<script language="JavaScript">
-      $(document).ready(function(){//等待dom元素加载完毕,类似window.onload;
-  			
-  			// 增加onclick事件处理函数			
-  			$("input[name=privilegeIds]").click(function(){
-  				// 当选中或取消某个权限时，同时也选中或取消所有的下级权限
-  				$(this).siblings("ul").find("input").attr("checked", this.checked);
-
-  				// 当选中某个权限时，应同时选中他的直系上的权限。
-  				if(this.checked == true){ // 可以直接写为 if(this.checked){..}
-  					$(this).parents("li").children("input[name=privilegeIds]").attr("checked", true);
-  				}
-  				
-  				// 当取消某个权限时，如果同级的权限都没有选择，就也取消上级权限
-  				else{
-  					if( $(this).parent().siblings("li").children("input:checked").size() == 0 ){
-  						$(this).parent().parent().siblings("input").attr("checked", false);
-  					}
-  				}
-  				
-  			});
-  		);
-      });
-    </script>
-
 </html>
 	

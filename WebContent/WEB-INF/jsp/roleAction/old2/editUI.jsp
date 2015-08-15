@@ -1,8 +1,17 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
 	<title>岗位设置</title>
-	<%@ include file="/WEB-INF/jsp/public/header.jspf" %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/DemoData.js" charset="utf-8"></script>
+	<script language="javascript" src="${pageContext.request.contextPath}/script/DataShowManager.js" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+    <script type="text/javascript"> 
+    </script>
 </head>
 <body> 
 
@@ -20,9 +29,9 @@
 <!--显示表单内容-->
 <div id="MainArea">
 
-    <s:form action="role_%{id == null ? 'add' : 'edit'}">
+    <s:form action="role_edit">
     	<s:hidden name="id"></s:hidden>
-	    
+
         <div class="ItemBlock_Title1"><!-- 信息说明<DIV CLASS="ItemBlock_Title1">
         	<IMG BORDER="0" WIDTH="4" HEIGHT="7" SRC="${pageContext.request.contextPath}/style/blue/images/item_point.gif" /> 岗位信息 </DIV>  -->
         </div>
@@ -33,7 +42,7 @@
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr>
                         <td width="100">岗位名称</td>
-                        <td><s:textfield name="name" cssClass="InputStyle required" /> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle" /> *</td>
                     </tr>
                     <tr>
                         <td>岗位说明</td>

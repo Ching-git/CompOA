@@ -40,7 +40,7 @@
                         </td>
                     </tr>
                     <tr><td>登录名</td>
-                        <td><s:textfield name="loginName" cssClass="InputStyle"/> *
+                        <td><s:textfield name="loginName" cssClass="InputStyle required {minlength:3, maxlength:15, messages:{required:'请填写用户名！！！'}  }"/> *
 							（登录名要唯一）
 						</td>
                     </tr>
@@ -59,7 +59,7 @@
                         <td><s:textfield name="phoneNumber" cssClass="InputStyle"/></td>
                     </tr>
                     <tr><td>E-mail</td>
-                        <td><s:textfield name="email" cssClass="InputStyle"/></td>
+                        <td><s:textfield name="email" cssClass="InputStyle required"/></td>
                     </tr>
                     <tr><td>备注</td>
                         <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>

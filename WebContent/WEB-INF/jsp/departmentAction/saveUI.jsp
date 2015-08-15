@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>部门设置</title>
-	<%@ include file="/WEB-INF/jsp/public/header.jspf"%>
+	<%@ include file="/WEB-INF/jsp/public/header.jspf" %>
 </head>
 <body>
 
@@ -32,14 +32,17 @@
             <div class="ItemBlock">
                 <table cellpadding="0" cellspacing="0" class="mainForm">
                     <tr><td width="100">上级部门</td>
-                        <td><s:select name="parentId" cssClass="SelectStyle"
-                        	list="departmentList" listKey="id" listValue="name"
-                        	headerKey="" headerValue="===请选择部门===">
-                            </s:select>
+                        <td>
+                        
+                        	<s:select name="parentId" cssClass="SelectStyle"
+                        		list="departmentList" listKey="id" listValue="name"
+                        		headerKey="" headerValue="==请选择部门=="
+                        	></s:select>
+                            
                         </td>
                     </tr>
 					<tr><td>部门名称</td>
-                        <td><s:textfield name="name" cssClass="InputStyle"/> *</td>
+                        <td><s:textfield name="name" cssClass="InputStyle required"/> *</td>
                     </tr>
                     <tr><td>职能说明</td>
                         <td><s:textarea name="description" cssClass="TextareaStyle"></s:textarea></td>

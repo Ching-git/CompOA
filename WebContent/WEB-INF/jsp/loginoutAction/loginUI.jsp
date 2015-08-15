@@ -5,18 +5,14 @@
 	<title>Itcast OA</title>
 	<%@ include file="/WEB-INF/jsp/public/header.jspf" %>
 	<link href="${pageContext.request.contextPath}/style/blue/login.css" type=text/css rel=stylesheet />
-	
 	<script type="text/javascript">
-		if ( window.parent != window ){
+		if( window.parent != window ){
 			window.parent.location.href = window.location.href;
 		}
 	</script>
-	
 </head>
 
-
 <body leftmargin=0 topmargin=0 marginwidth=0 marginheight=0 class=PageBody >
-
 
 <s:form action="loginout_login">
  

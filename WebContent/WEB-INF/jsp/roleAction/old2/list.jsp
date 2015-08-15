@@ -1,9 +1,16 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%-- 显示数据 --%>
 <html>
 <head>
     <title>岗位列表</title>
-	<%@ include file="/WEB-INF/jsp/public/header.jspf" %>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script language="javascript" src="${pageContext.request.contextPath}/script/jquery.js"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/pageCommon.js" charset="utf-8"></script>
+    <script language="javascript" src="${pageContext.request.contextPath}/script/PageUtils.js" charset="utf-8"></script>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/style/blue/pageCommon.css" />
+    <script type="text/javascript">
+    </script>
 </head>
 <body>
  
@@ -39,7 +46,7 @@
 				<td>
 					<s:a action="role_delete?id=%{id}" onclick="return confirm('确定要删除吗？')">删除</s:a>
 					<s:a action="role_editUI?id=%{id}">修改</s:a>
-					<s:a action="role_setPrivilegeUI?id=%{id}">设置权限</s:a>
+					<a href="setPrivilegeUI.html">设置权限</a>
 				</td>
 			</tr>
 		</s:iterator>	

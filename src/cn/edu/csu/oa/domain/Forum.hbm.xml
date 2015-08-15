@@ -13,6 +13,20 @@
         <property name="name" column="name"></property>
         <property name="description" column="description"></property>
         <property name="position" column="position"></property>
+        
+        <property name="topicCount" column="topicCount"></property>
+        <property name="articleCount" column="articleCount"></property>
+        
+        <!-- topics属性，表示我与Topic的一对多关系 -->
+        <set name="topics">
+            <key column="forumId"></key>
+            <one-to-many class="Topic"/>
+        </set>
+       
+       <!-- lastTopic属性，表示我与Topic的一对一关系 
+                                采用基于外键的一对一映射，本方有外键。
+       -->
+       <many-to-one name="lastTopic" class="Topic" column="lastTopicId" unique="true"></many-to-one>
        
 	</class>
 	
